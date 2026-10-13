@@ -1,0 +1,22 @@
+{
+  "name": "OpenWorker + LLM Wiki",
+  "image": "mcr.microsoft.com/devcontainers/python:3.12",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": { "version": "22" }
+  },
+  "hostRequirements": { "cpus": 2, "memory": "8gb" },
+
+  // 第一次建立時：下載並安裝 OpenWorker（約 5–10 分鐘）
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  // 每次開啟時：啟動 OpenWorker
+  "postStartCommand": "bash .devcontainer/start.sh",
+
+  "forwardPorts": [1420],
+  "portsAttributes": {
+    "1420": { "label": "OpenWorker", "onAutoForward": "openBrowser" },
+    "8765": { "label": "OpenWorker 後台（不用打開）", "onAutoForward": "ignore" }
+  },
+  "customizations": {
+    "codespaces": { "openFiles": ["README.md"] }
+  }
+}
